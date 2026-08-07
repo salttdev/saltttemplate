@@ -36,3 +36,49 @@ java {
     }
     withSourcesJar()
 }
+
+
+tasks.shadowJar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    mergeServiceFiles()
+
+    dependencies {
+        exclude(dependency("com.hypixel.hytale:Server:.*"))
+        exclude(dependency("dev.scaffoldit:.*:.*"))
+
+        exclude(dependency("curse.maven:hyui-.*:.*"))
+        exclude(dependency("curse.maven:multiplehud-.*:.*"))
+    }
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(javaVersion)
+    }
+    withSourcesJar()
+}
+
+// gradle tasks
+
+val fightClubGroup = "Saltt Template"
+
+// Re-home the tasks that already exist
+tasks.named("clean") {
+    group = fightClubGroup
+}
+
+tasks.named("devServer") {
+    group = fightClubGroup
+}
+
+// The combined one needs its own name
+tasks.register("cleanShadowJar") {
+    group = fightClubGroup
+    description = "Clean, then build the shadow jar."
+    dependsOn("clean", "shadowJar")
+}
+
+tasks.named("shadowJar") {
+    group = fightClubGroup
+    mustRunAfter("clean")
+}
