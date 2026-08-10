@@ -24,9 +24,6 @@ tasks.shadowJar {
     dependencies {
         exclude(dependency("com.hypixel.hytale:Server:.*"))
         exclude(dependency("dev.scaffoldit:.*:.*"))
-
-        exclude(dependency("curse.maven:hyui-.*:.*"))
-        exclude(dependency("curse.maven:multiplehud-.*:.*"))
     }
 }
 
