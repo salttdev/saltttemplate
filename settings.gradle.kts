@@ -22,6 +22,6 @@ hytale {
     manifest {
         Group = "Saltt"
         Name = "template"
-        Main = "gg.emberfall.template.Main"
+        Main = "dev.saltt.template.Main"
     }
 }
