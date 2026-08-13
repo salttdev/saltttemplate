@@ -1,3 +1,5 @@
+import dev.scaffoldit.hytale.wire.HytaleManifest
+
 rootProject.name = "template"
 
 plugins {
@@ -22,6 +24,8 @@ hytale {
     manifest {
         Group = "Saltt"
         Name = "template"
+        Version = "1.0.0"
+        Description = "A Hytale server mod"
         Main = "dev.saltt.template.Main"
     }
 }

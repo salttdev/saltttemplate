@@ -6,12 +6,11 @@ plugins {
 val javaVersion = 25
 
 repositories {
-    // Any external repositories besides: MavenLocal, MavenCentral, HytaleMaven, and CurseMaven
+
 }
 
 dependencies {
-    //compileOnly(libs.jetbrains.annotations)
-    //compileOnly(libs.jspecify)
+
 
     compileOnly(fileTree("libs") {
         include("*.jar")
@@ -42,9 +41,6 @@ tasks.shadowJar {
     dependencies {
         exclude(dependency("com.hypixel.hytale:Server:.*"))
         exclude(dependency("dev.scaffoldit:.*:.*"))
-
-        exclude(dependency("curse.maven:hyui-.*:.*"))
-        exclude(dependency("curse.maven:multiplehud-.*:.*"))
     }
 }
 
@@ -57,25 +53,24 @@ java {
 
 // gradle tasks
 
-val fightClubGroup = "Saltt Template"
+val gradleGroup = "Template"
 
-// Re-home the tasks that already exist
 tasks.named("clean") {
-    group = fightClubGroup
+    group = gradleGroup
 }
 
 tasks.named("devServer") {
-    group = fightClubGroup
+    group = gradleGroup
 }
 
 // The combined one needs its own name
 tasks.register("cleanShadowJar") {
-    group = fightClubGroup
+    group = gradleGroup
     description = "Clean, then build the shadow jar."
     dependsOn("clean", "shadowJar")
 }
 
 tasks.named("shadowJar") {
-    group = fightClubGroup
+    group = gradleGroup
     mustRunAfter("clean")
 }
